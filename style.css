@@ -1,0 +1,247 @@
+*{
+    padding: 0;
+    margin: 0;
+    /* border: solid 1px black; */
+    list-style-type: none;
+    box-sizing: border-box;
+}
+body,html{
+    height: 100%;
+    background-color: rgb(99, 162, 199);
+    background: linear-gradient(to right,#4568dc,#b06ab3);
+}
+#switchmoon{
+    display: none;
+}
+#switchmoon:checked+.top .moon,
+#switchmoon:checked+.top .cloud{
+    opacity: .2;
+}
+#switchmoon:checked+.top svg circle,
+#switchmoon:checked+.top svg polyline,
+#switchmoon:checked+.top svg text{
+    opacity: 1;
+}
+section{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.daybox{
+    width: 50%;
+    max-width: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(29, 29, 29, 0.6);
+    transition: .5s;
+}
+.daybox:hover{
+    transform: translateY(-30px)
+}
+.daybox:hover .bottom{
+    height: 80px;
+}
+.daybox:hover .bottom .dayweather{
+    opacity: 1;
+    top: 0;
+}
+.daybox .top{
+    height: 330px;
+    background: linear-gradient(to top,#4f588b,rgba(228, 153, 55,.9));
+    position: relative;
+}
+.daybox .top svg{
+    width: 400px;
+    stroke: rgba(255, 255, 255,.6);
+    stroke-width: 0;
+}
+.daybox .top svg circle{
+    opacity: .2;
+    fill: white;
+    transition: .5s;
+}
+.daybox .top svg text{
+    opacity: .2;
+    fill: white;
+    font-size: 5px;
+    transform: translate(-2px,-3px);
+    transition: .5s .6s;
+}
+.daybox .top svg polyline{
+    opacity: .2;
+    fill: none;
+    stroke-width: .5px;
+    transition: .5s .3s;
+}
+.daybox .top .moon{
+    width: 70px;
+    height: 70px;
+    background-color: transparent;
+    border-radius: 50px;
+    position: absolute;
+    left: 40px;
+    top: 30px;
+    animation: movemoon 20s infinite linear ;
+    /* transform: translate(-15px,15px); */
+    transition: .5s;
+}
+@keyframes movemoon{
+    0%{
+        box-shadow: 30px -30px rgb(167, 42, 42);
+        transform: translate(-30px,30px);
+    }
+    50%{
+        box-shadow: -30px 30px rgb(167, 42, 42);
+        transform: translate(30px,-30px);
+    }
+    100%{
+        box-shadow: 30px -30px rgb(167, 42, 42);
+        transform: translate(-30px,30px);
+    }
+    
+}
+.daybox .top .cloud{
+    width: 150px;
+    height: 50px;
+    background-color: #fff;
+    position: absolute;
+    right: 20px;
+    top: 160px;
+    border-radius: 50px;
+    animation: cloudmove 5s linear infinite;
+    transition: .5s;
+}
+@keyframes cloudmove{
+    0%{
+        transform: translateY(0)
+    }
+    50%{
+        transform: translateY(10PX)
+    }
+}
+.daybox .top .cloud::before,
+.daybox .top .cloud::after{
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: #fff;
+    border-radius: 70px;
+}
+.daybox .top .cloud::before{
+    left: 20px;
+    top: -30px;
+}
+.daybox .top .cloud::after{
+    right: 20px;
+    top: -20px;
+}
+.rain{
+    width: 5px;
+    height: 20px;
+    background-color: #fff;
+    position: absolute;
+    left: 50px;
+    bottom: 0px;
+    animation: rain 1s infinite linear;
+    /* border: solid black 1px; */
+}
+.rain2{
+    left: 30px;
+    animation-delay: .5s;
+}
+.rain3{
+    left: 80px;
+    animation-delay: 1.2s;
+}
+.rain4{
+    left: 115px;
+    animation-delay: .7s;
+}
+@keyframes rain{
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(40px);
+        opacity: 0;
+    }
+}
+.daybox .top .txt-area{
+    display: inline-block;
+    /* border: solid 1px black; */
+    color: #fff;
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+}
+.daybox .top .txt-area .temperature{
+    font-size: 36px;
+}
+.daybox .top .txt-area .infos{
+    font-size: 20px;
+}
+.daybox .bottom{
+    background-color: #eee;
+    font-size: 0;
+    height: 20px;
+    background-color: #4f588b;
+    padding: 0 20px;
+    transition: .6s;
+    position: relative;
+}
+.daybox .bottom .dayweather{
+    width: calc( 100% / 7 );
+    display: inline-block;
+    background-color: #4f588b;
+    opacity: 0;
+    position: relative;
+    top: 20px;
+}
+.daybox .bottom .dayweather:nth-child(1){
+    transition: .5s;
+}
+.daybox .bottom .dayweather:nth-child(2){
+    transition: .5s .1s;
+}
+.daybox .bottom .dayweather:nth-child(3){
+    transition: .5s .2s;
+}
+.daybox .bottom .dayweather:nth-child(4){
+    transition: .5s .3s;
+}
+.daybox .bottom .dayweather:nth-child(5){
+    transition: .5s .4s;
+}
+.daybox .bottom .dayweather:nth-child(6){
+    transition: .5s .5s;
+}
+.daybox .bottom .dayweather:nth-child(7){
+    transition: .5s .6s;
+}
+.daybox .bottom .dayweather h1{
+    text-align: center;
+    font-size: 16px;
+    width: 100%;
+    color: white;
+}
+.daybox .bottom .dayweather svg{
+    width: 100%;
+    padding: 5pX;
+}
+.daybox .bottom .dayweather svg circle{
+    stroke: rgb(233, 176, 20);
+    fill: rgb(233, 176, 20);
+    stroke-width: 30px;
+    stroke-dasharray: 5px;
+}
+.daybox .bottom .dayweather svg .cloud{
+    stroke-width: 0;
+    fill: white;
+}
+.daybox .bottom .dayweather svg .rain{
+    stroke-width: 10px;
+    stroke: #fff;
+}
